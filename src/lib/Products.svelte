@@ -42,7 +42,7 @@
 <style>
     .products-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(4, minmax(200px, 1fr));
         gap: 16px;
     }
 </style>
