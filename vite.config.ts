@@ -7,8 +7,7 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
     port: 6969,
-    proxy: {
-      "/api": "http://localhost:8080",
-    },
   },
+  envDir: "./",
+  envPrefix: 'VITE_',
 });

@@ -2,7 +2,6 @@
     import type { Product } from "../repository/types";
 
     export let product: Product;
-    console.log(product);
 </script>
 
 <div class="product-card">
