@@ -28,7 +28,7 @@
     <select on:change={changeLocation}>
         <option value="">Select Location</option>
         {#each locations as location}
-            <option value={location.name}>{location.name}</option>
+            <option value={location.id}>{location.name}</option>
         {/each}
     </select>
 {/if}

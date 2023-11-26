@@ -14,6 +14,7 @@ type resource =
 
 export type Location = {
   resources?: resource[];
+  id?: string;
   name?: string;
   address?: string;
   state?: string;
