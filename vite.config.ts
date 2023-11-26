@@ -9,5 +9,5 @@ export default defineConfig({
     port: 6969,
   },
   envDir: "./",
-  envPrefix: 'VITE_',
+  envPrefix: "VITE_",
 });

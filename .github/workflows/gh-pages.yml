@@ -25,18 +25,24 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: "16"
 
       - name: Install Dependencies
         run: npm install
 
       - name: Build Project
-        run: npm run build 
+        run: npm run build
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: svelte-build
+          path: "./dist"
 
       - name: Upload Build Artifacts
         uses: actions/upload-pages-artifact@v2
         with:
-          path: './dist'
+          path: "./dist"
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2

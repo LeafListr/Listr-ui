@@ -1,10 +1,18 @@
 <script>
-    let storeName = 'fooBar\'s store';
+    import { dispensaryStore } from "../repository/store";
+
+    let dispensary = "Please select a dispensary...";
+
+    dispensaryStore.subscribe(($dispensaryStore) => {
+        let selectedDispensary = $dispensaryStore.dispensary;
+        if (selectedDispensary) {
+            dispensary = selectedDispensary;
+        }
+    });
 </script>
 
 <nav>
-    <button class="store-switch">Switch store</button>
-    <h1 class="store-name">{storeName}</h1>
+    <h1 class="dispensary-name">{dispensary}</h1>
 </nav>
 
 <style>

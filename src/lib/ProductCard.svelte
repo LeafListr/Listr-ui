@@ -5,21 +5,16 @@
 </script>
 
 <div class="product-card">
-    <img
-        height="64px"
-        width="64px"
-        src={product.images[0]}
-        alt={product.name}
-    />
+    <img src={product.images[0]} alt={product.name} />
     <h2>{product.name}</h2>
     <div class="terp-list">
         {#each product.terpenes || [] as terp}
-            <p>{terp.name} - %{terp.value}</p>
+            <p>{terp.name} - {terp.value}%</p>
         {/each}
     </div>
     <div class="cannabinoid-list">
         {#each product.cannabinoids || [] as cannabinoid}
-            <p>{cannabinoid.name} - %{cannabinoid.value}</p>
+            <p>{cannabinoid.name} - {cannabinoid.value}%</p>
         {/each}
     </div>
     <div class="variant-list">
@@ -41,8 +36,8 @@
     }
 
     .product-card img {
-        max-width: 100%;
-        height: auto;
+        width: 64px;
+        height: 64px;
         border-radius: 4px;
     }
 </style>

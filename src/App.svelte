@@ -1,11 +1,17 @@
 <script lang="ts">
-import Navigation from "./lib/Navigation.svelte";
-import Products from "./lib/Products.svelte";
+    import CategoriesSelect from "./lib/CategoriesSelect.svelte";
+import DispensarySelect from "./lib/DispensarySelect.svelte";
+    import LocationSelect from "./lib/LocationSelect.svelte";
+    import Navigation from "./lib/Navigation.svelte";
+    import Products from "./lib/Products.svelte";
 </script>
 
 <main>
-  <Navigation />
-  <Products dispensary="curaleaf" location="LMR124" />
+    <Navigation />
+    <DispensarySelect />
+    <LocationSelect />
+    <CategoriesSelect />
+    <Products />
 </main>
 
 <style></style>
