@@ -10,7 +10,21 @@
         selectedDispensaryLocation = $dispensaryStore.dispensary;
         if (selectedDispensaryLocation) {
             getDispensaryLocations(selectedDispensaryLocation).then(
-                (locs: Location[]) => (locations = locs),
+                (locs: Location[]) => {
+                    const sortedLocations = locs.sort((a, b) => {
+                        if (!a.name || !b.name) {
+                            return 0;
+                        }
+                        if (a.name < b.name) {
+                            return -1;
+                        }
+                        if (a.name > b.name) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                    locations = sortedLocations;
+                },
             );
         }
     });
@@ -24,11 +38,9 @@
     }
 </script>
 
-{#if locations}
-    <select on:change={changeLocation}>
-        <option value="">Select Location</option>
-        {#each locations as location}
-            <option value={location.id}>{location.name}</option>
-        {/each}
-    </select>
-{/if}
+<select on:change={changeLocation}>
+    <option value="">Select Location</option>
+    {#each locations as location}
+        <option value={location.id}>{location.name}</option>
+    {/each}
+</select>

@@ -5,7 +5,10 @@
     import { dispensaryStore } from "../repository/store";
 
     let products: Product[] = [];
-    let loading = true;
+    let loading = false;
+    let selectedDispensary = "";
+    let selectedLocation = "";
+    let selectedCategory = "";
 
     let loadingProduct: Product = {
         id: "Loading Id...",
@@ -25,9 +28,9 @@
     };
 
     dispensaryStore.subscribe(($dispensaryStore) => {
-        let selectedDispensary = $dispensaryStore.dispensary;
-        let selectedLocation = $dispensaryStore.location;
-        let selectedCategory = $dispensaryStore.category;
+        selectedDispensary = $dispensaryStore.dispensary;
+        selectedLocation = $dispensaryStore.location;
+        selectedCategory = $dispensaryStore.category;
         if (selectedDispensary && selectedLocation && selectedCategory) {
             loading = true;
             getProductsForCategory(
@@ -41,6 +44,10 @@
         }
     });
 </script>
+
+{#if !selectedDispensary || !selectedLocation || !selectedCategory}
+    <p> Please select a dispensary, location, and category :) </p>
+{/if}
 
 {#if loading}
     <div class="products-grid">
