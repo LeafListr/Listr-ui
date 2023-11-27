@@ -3,29 +3,13 @@
     import type { Product } from "../repository/types";
     import { getProductsForCategory } from "../repository/Products";
     import { dispensaryStore } from "../repository/store";
+    import { loadingProduct } from "./loadingProduct";
 
     let products: Product[] = [];
     let loading = false;
     let selectedDispensary = "";
     let selectedLocation = "";
     let selectedCategory = "";
-
-    let loadingProduct: Product = {
-        id: "Loading Id...",
-        name: "Loading Name...",
-        category: "Loading Category...",
-        images: ["loading.gif"],
-        terpenes: [{ name: "Loading Terpenes...", value: 0, description: "" }],
-        cannabinoids: [
-            { name: "Loading Cannabinoids...", value: 0, description: "" },
-        ],
-        variants: [
-            {
-                name: "Loading Variants...",
-                price: { total: 0, discountedTotal: 0 },
-            },
-        ],
-    };
 
     dispensaryStore.subscribe(($dispensaryStore) => {
         selectedDispensary = $dispensaryStore.dispensary;
@@ -46,7 +30,7 @@
 </script>
 
 {#if !selectedDispensary || !selectedLocation || !selectedCategory}
-    <p> Please select a dispensary, location, and category :) </p>
+    <p>Please select a dispensary, location, and category :)</p>
 {/if}
 
 {#if loading}
