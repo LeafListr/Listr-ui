@@ -2,7 +2,7 @@ name: Deploy Vite + Svelte App to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
 
   workflow_dispatch:
 
@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 jobs:
@@ -25,7 +25,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: '16'
 
       - name: Install Dependencies
         run: npm install
@@ -37,12 +37,12 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: svelte-build
-          path: "./dist"
+          path: './dist'
 
       - name: Upload Build Artifacts
         uses: actions/upload-pages-artifact@v2
         with:
-          path: "./dist"
+          path: './dist'
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2

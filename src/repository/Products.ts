@@ -1,5 +1,5 @@
-import type { Product } from "./types";
-import axios from "axios";
+import type { Product } from './types';
+import axios from 'axios';
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 

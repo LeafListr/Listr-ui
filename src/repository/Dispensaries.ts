@@ -1,5 +1,5 @@
-import type { Dispensary, Location } from "./types.ts";
-import axios from "axios";
+import type { Dispensary, Location } from './types.ts';
+import axios from 'axios';
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 

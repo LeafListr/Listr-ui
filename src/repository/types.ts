@@ -1,4 +1,4 @@
-type supportedDispensary = "curaleaf";
+type supportedDispensary = 'curaleaf';
 
 export type Dispensary = {
   id: supportedDispensary;
@@ -6,11 +6,11 @@ export type Dispensary = {
 };
 
 type resource =
-  | "product"
-  | "offers"
-  | "categories"
-  | "terpenes"
-  | "cannabinoids";
+  | 'product'
+  | 'offers'
+  | 'categories'
+  | 'terpenes'
+  | 'cannabinoids';
 
 export type Location = {
   resources?: resource[];
@@ -40,17 +40,15 @@ export type Terpene = {
 
 export type Category = string;
 
-export type Variant = {
-  name: string;
-  price: Price;
-};
-
 export type Product = {
   id: string;
+  brand: string;
   name: string;
   images: string[];
   category: Category;
-  variants: Variant[];
+  subcategory: string;
+  variant: string;
+  price: Price;
   cannabinoids: Cannabinoid[];
   terpenes: Terpene[];
 };
