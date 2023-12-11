@@ -8,6 +8,7 @@ export const dispensaryStore = writable({
 
 export const productStore = writable({
   products: [] as Product[],
+  productsLoading: false,
   variant: '',
   category: '',
   subcategory: '',

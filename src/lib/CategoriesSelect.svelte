@@ -30,6 +30,7 @@
     productStore.update(store => ({
       ...store,
       products: [],
+      productsLoading: true,
       category: selectedCategory,
     }));
     getProductsForCategory(
@@ -40,6 +41,7 @@
       productStore.update(store => ({
         ...store,
         products: foundProducts,
+        productsLoading: false,
         category: selectedCategory,
       }));
     });

@@ -18,12 +18,13 @@
   productStore.subscribe($productStore => {
     selectedCategory = $productStore.category;
     products = $productStore.products;
+    loading = $productStore.productsLoading;
   });
 </script>
 
 {#if !selectedDispensary || !selectedLocation || !selectedCategory}
   <p>Please select a dispensary, location, and category :)</p>
-{:else if loading || products.length === 0}
+{:else if loading}
   <div class="products-grid">
     {#each Array(50) as _, index (index)}
       <ProductCard product={loadingProduct} />

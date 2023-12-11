@@ -23,7 +23,8 @@ export type Location = {
 
 export type Price = {
   total: number;
-  discountedTotal?: number;
+  discountedTotal: number;
+  isDiscounted: boolean;
 };
 
 export type Cannabinoid = {

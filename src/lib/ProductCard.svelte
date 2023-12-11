@@ -16,10 +16,15 @@
     </p>
   </div>
   <div class="product-variants">
-    <label for="variant">Variant</label>
+    <label for="variant">Variant/$</label>
     <p id="variant">
-      {product.variant} / ${product.price?.total ||
-        product.price?.discountedTotal}
+      {product.variant} /
+      <span class:discounted={product.price.isDiscounted}
+        >${product.price.total}</span
+      >
+      {#if product.price.isDiscounted}
+        <span class="discounted-price">${product.price.discountedTotal}</span>
+      {/if}
     </p>
   </div>
   <div class="product-cannabinoids">
@@ -95,5 +100,12 @@
   label {
     font-size: 12px;
     font-weight: bold;
+  }
+
+  .discounted {
+    color: red;
+    text-decoration: line-through;
+    font-size: 0.75rem;
+    line-height: 1rem;
   }
 </style>

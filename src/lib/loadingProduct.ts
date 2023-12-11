@@ -12,5 +12,5 @@ export const loadingProduct: Product = {
   variant: 'Loading Variant...',
   brand: 'Loading Brand...',
   subcategory: 'Loading Subcategory...',
-  price: { total: 0, discountedTotal: 0 },
+  price: { total: 0, discountedTotal: 0, isDiscounted: false },
 };
