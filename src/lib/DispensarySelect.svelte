@@ -1,25 +1,23 @@
 <script lang="ts">
   import { getDispensaries } from '../repository/Dispensaries';
-  import { onMount } from 'svelte';
-  import { dispensaryStore } from '../repository/store';
+  import { dispensaryStore, productStore } from '../repository/store';
   import type { Dispensary } from '../repository/types';
 
   let dispensaries: Dispensary[] = [];
 
-  onMount(async () => {
-    dispensaries = await getDispensaries();
-  });
-
-  function changeDispensary(event: Event) {
-    const target = event.target as HTMLSelectElement;
-    dispensaryStore.update(store => ({
-      ...store,
-      dispensary: target.value,
-    }));
+  $: {
+    const { isRecreational } = $dispensaryStore;
+    getDispensaries(isRecreational).then(foundDispensaries => {
+      dispensaries = foundDispensaries;
+    });
   }
 </script>
 
-<select on:change={changeDispensary}>
+<h2 class="dispensary-name">Now Viewing: {$dispensaryStore.dispensary}</h2>
+<select
+  bind:value={$dispensaryStore.dispensary}
+  disabled={dispensaries.length === 0 || $productStore.productsLoading}
+>
   <option value="">Select Dispensary</option>
   {#each dispensaries as dispensary}
     <option value={dispensary}>{dispensary}</option>

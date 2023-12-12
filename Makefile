@@ -1,4 +1,4 @@
-run:
+dev:
 	npm run dev
 
 test:

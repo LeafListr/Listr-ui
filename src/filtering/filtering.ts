@@ -6,6 +6,7 @@ const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 export async function filter(
   dispensary: string,
   location: string,
+  isRecreational: boolean,
   category: string,
   variants: string,
   subcategory: string,
@@ -15,6 +16,11 @@ export async function filter(
   includedBrands: string,
 ): Promise<Product[]> {
   let url = `${apiBaseUrl}/api/v1/dispensaries/${dispensary}/locations/${location}/products?category=${category}`;
+  if (isRecreational) {
+    url = url.concat('&menu_type=recreational');
+  } else {
+    url = url.concat('&menu_type=medical');
+  }
   if (subcategory) {
     url = url.concat(`&sub=${subcategory}`);
   }

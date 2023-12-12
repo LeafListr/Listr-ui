@@ -2,29 +2,11 @@
   import ProductCard from './ProductCard.svelte';
   import { dispensaryStore, productStore } from '../repository/store';
   import { loadingProduct } from './loadingProduct';
-  import type { Product } from '../repository/types';
-
-  let loading = false;
-  let selectedDispensary = '';
-  let selectedLocation = '';
-  let selectedCategory = '';
-  let products: Product[] = [];
-
-  dispensaryStore.subscribe($dispensaryStore => {
-    selectedDispensary = $dispensaryStore.dispensary;
-    selectedLocation = $dispensaryStore.location;
-  });
-
-  productStore.subscribe($productStore => {
-    selectedCategory = $productStore.category;
-    products = $productStore.products;
-    loading = $productStore.productsLoading;
-  });
 </script>
 
-{#if !selectedDispensary || !selectedLocation || !selectedCategory}
+{#if !($dispensaryStore.dispensary && $dispensaryStore.location && $productStore.category)}
   <p>Please select a dispensary, location, and category :)</p>
-{:else if loading}
+{:else if !$productStore.products || $productStore.productsLoading}
   <div class="products-grid">
     {#each Array(50) as _, index (index)}
       <ProductCard product={loadingProduct} />
@@ -32,7 +14,7 @@
   </div>
 {:else}
   <div class="products-grid">
-    {#each products as product}
+    {#each $productStore.products as product}
       <ProductCard {product} />
     {/each}
   </div>

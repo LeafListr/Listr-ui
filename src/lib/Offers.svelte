@@ -7,14 +7,19 @@
   let offers: Offer[];
   let selectedDispensary: string;
   let selectedLocation: string;
+  let isRecreational: boolean = true;
 
   dispensaryStore.subscribe($dispensaryStore => {
     selectedDispensary = $dispensaryStore.dispensary;
     selectedLocation = $dispensaryStore.location;
+    isRecreational = $dispensaryStore.isRecreational;
+
     if (selectedDispensary && selectedLocation) {
-      getOffers(selectedDispensary, selectedLocation).then(foundOffers => {
-        offers = foundOffers;
-      });
+      getOffers(selectedDispensary, selectedLocation, isRecreational).then(
+        foundOffers => {
+          offers = foundOffers;
+        },
+      );
     }
   });
 </script>

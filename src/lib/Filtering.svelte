@@ -6,6 +6,7 @@
   let selectedDispensary: string;
   let selectedLocation: string;
   let selectedCategory: string;
+  let isRecreational: boolean;
   let selectedSubcategory: string;
   let selectedVariant: string;
   let maxPrice: number;
@@ -15,25 +16,24 @@
 
   let loading: boolean;
 
-  dispensaryStore.subscribe($dispensaryStore => {
+  $: {
     selectedDispensary = $dispensaryStore.dispensary;
     selectedLocation = $dispensaryStore.location;
-  });
-
-  productStore.subscribe($productStore => {
     selectedCategory = $productStore.category;
+    isRecreational = $dispensaryStore.isRecreational;
     loading = $productStore.productsLoading;
-  });
+  }
 
   function combinedFilter() {
     productStore.update(store => ({
       ...store,
       products: [],
-      loading: true,
+      productsLoading: true,
     }));
     filter(
       selectedDispensary,
       selectedLocation,
+      isRecreational,
       selectedCategory,
       selectedVariant,
       selectedSubcategory,
@@ -45,7 +45,7 @@
       productStore.update(store => ({
         ...store,
         products: foundProducts,
-        loading: false,
+        productsLoading: false,
       }));
     });
   }

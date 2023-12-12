@@ -4,6 +4,7 @@ import type { Product } from './types';
 export const dispensaryStore = writable({
   dispensary: '',
   location: '',
+  isRecreational: false,
 });
 
 export const productStore = writable({
