@@ -1,18 +1,18 @@
 <script lang="ts">
-  import { dispensaryStore, productStore } from '../repository/store';
+  import {
+    dispensaryStore,
+    productStore,
+    transformStore,
+  } from '../repository/store';
+  import {
+    newSortAndFilterParams,
+    sortAndFilter,
+  } from '../transformations/sortAndFilter';
   import Accordion from './Accordion.svelte';
-  import { filter } from '../filtering/filtering';
 
   let selectedDispensary: string;
   let selectedLocation: string;
   let selectedCategory: string;
-  let isRecreational: boolean;
-  let selectedSubcategory: string;
-  let selectedVariant: string;
-  let maxPrice: number;
-  let minPrice: number;
-  let includedBrands: string;
-  let excludedBrands: string;
 
   let loading: boolean;
 
@@ -20,7 +20,6 @@
     selectedDispensary = $dispensaryStore.dispensary;
     selectedLocation = $dispensaryStore.location;
     selectedCategory = $productStore.category;
-    isRecreational = $dispensaryStore.isRecreational;
     loading = $productStore.productsLoading;
   }
 
@@ -30,17 +29,8 @@
       products: [],
       productsLoading: true,
     }));
-    filter(
-      selectedDispensary,
-      selectedLocation,
-      isRecreational,
-      selectedCategory,
-      selectedVariant,
-      selectedSubcategory,
-      minPrice,
-      maxPrice,
-      excludedBrands,
-      includedBrands,
+    sortAndFilter(
+      newSortAndFilterParams($dispensaryStore, $productStore, $transformStore),
     ).then(foundProducts => {
       productStore.update(store => ({
         ...store,
@@ -62,7 +52,7 @@
             type="text"
             id="variants-input"
             placeholder="1oz,1g"
-            bind:value={selectedVariant}
+            bind:value={$transformStore.variants}
           />
         </section>
         <section id="subcategory">
@@ -71,7 +61,7 @@
             type="text"
             id="subcategory-input"
             placeholder="cartridges"
-            bind:value={selectedSubcategory}
+            bind:value={$transformStore.subcategory}
           />
         </section>
         <section id="minPrice">
@@ -80,7 +70,7 @@
             type="text"
             id="minPrice-input"
             placeholder="0"
-            bind:value={minPrice}
+            bind:value={$transformStore.minPrice}
           />
         </section>
         <section id="maxPrice">
@@ -89,7 +79,7 @@
             type="text"
             id="maxPrice-input"
             placeholder="100"
-            bind:value={maxPrice}
+            bind:value={$transformStore.maxPrice}
           />
         </section>
         <section id="excluded-brands">
@@ -98,7 +88,7 @@
             type="text"
             id="excluded-brands-input"
             placeholder="brand1,brand2"
-            bind:value={excludedBrands}
+            bind:value={$transformStore.excludedBrands}
           />
         </section>
         <section id="included-brands">
@@ -107,7 +97,7 @@
             type="text"
             id="included-brands-input"
             placeholder="brand1,brand2"
-            bind:value={includedBrands}
+            bind:value={$transformStore.includedBrands}
           />
         </section>
         <button type="submit" disabled={loading}> Filter </button>
@@ -129,7 +119,7 @@
     padding-bottom: 7px;
   }
   #filter-form input {
-    width: 100%;
+    width: 90%;
   }
   #variants {
     grid-area: variants;
@@ -145,5 +135,6 @@
   }
   button {
     grid-area: submit;
+    border: 1px solid #858585;
   }
 </style>

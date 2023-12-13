@@ -36,6 +36,7 @@
   }
 
   div.details {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     background-color: #1d1d20;
     border-radius: 60px;
     padding: 1rem;

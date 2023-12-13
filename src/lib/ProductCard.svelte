@@ -52,6 +52,8 @@
       'terpenes terpenes';
     border: 1px solid #ccc;
     border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    background-color: #2c2030;
     padding: 20px;
     text-align: center;
     align-items: center;
