@@ -129,7 +129,7 @@
     padding-bottom: 7px;
   }
   #filter-form input {
-    width: 50%;
+    width: 100%;
   }
   #variants {
     grid-area: variants;

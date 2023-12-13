@@ -22,7 +22,11 @@
 
   function handleOnChange(event: Event) {
     const target = event.target as HTMLSelectElement;
-    if (!target.value || !$dispensaryStore.dispensary || !$dispensaryStore.location) {
+    if (
+      !target.value ||
+      !$dispensaryStore.dispensary ||
+      !$dispensaryStore.location
+    ) {
       return;
     }
     productStore.update(store => ({
