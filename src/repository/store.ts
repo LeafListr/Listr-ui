@@ -16,7 +16,8 @@ export type productStoreFields = {
 };
 
 export type transformStoreFields = {
-  sortMethod: string;
+  priceSortMethod: string;
+  thcSortMethod: string;
   terp1: string;
   terp2: string;
   terp3: string;
@@ -43,7 +44,8 @@ export const productStore = writable({
 } as productStoreFields);
 
 export const transformStore = writable({
-  sortMethod: '',
+  priceSortMethod: '',
+  thcSortMethod: '',
   terp1: '',
   terp2: '',
   terp3: '',

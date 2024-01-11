@@ -16,7 +16,8 @@ type requestParams = {
 };
 
 type sortParams = {
-  sortMethod: string;
+  priceSortMethod: string;
+  thcSortMethod: string;
   terp1: string;
   terp2: string;
   terp3: string;
@@ -50,7 +51,8 @@ export function newSortAndFilterParams(
       category: pStore.category,
     },
     sort: {
-      sortMethod: tStore.sortMethod,
+      priceSortMethod: tStore.priceSortMethod,
+      thcSortMethod: tStore.thcSortMethod,
       terp1: tStore.terp1,
       terp2: tStore.terp2,
       terp3: tStore.terp3,
@@ -75,8 +77,11 @@ export async function sortAndFilter(
   } else {
     url = url.concat('&menu_type=medical');
   }
-  if (params.sort.sortMethod) {
-    url = url.concat(`&sort=${params.sort.sortMethod}`);
+  if (params.sort.priceSortMethod) {
+    url = url.concat(`&price_sort=${params.sort.priceSortMethod}`);
+  }
+  if (params.sort.thcSortMethod) {
+    url = url.concat(`&thc_sort=${params.sort.thcSortMethod}`);
   }
   if (params.sort.terp1) {
     url = url.concat(`&terp1=${params.sort.terp1}`);

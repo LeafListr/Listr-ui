@@ -66,10 +66,18 @@
       <form id="sorter-form" on:submit|preventDefault={combinedSorter}>
         <section id="sort-method">
           <label for="sort-method-input">Price Sort Method</label>
-          <select bind:value={$transformStore.sortMethod}>
+          <select bind:value={$transformStore.priceSortMethod}>
             <option value="">Select Price Sorter</option>
-            <option value="price_asc">Low to High</option>
-            <option value="price_desc">High to Low</option>
+            <option value="asc">Low to High</option>
+            <option value="desc">High to Low</option>
+          </select>
+        </section>
+        <section id="thc-sort-method">
+          <label for="thc-sort-method-input">THC Sort Method</label>
+          <select bind:value={$transformStore.thcSortMethod}>
+            <option value="">Select THC Sorter</option>
+            <option value="asc">Low to High</option>
+            <option value="desc">High to Low</option>
           </select>
         </section>
         <section id="terps">
@@ -106,6 +114,7 @@
     display: grid;
     grid-template-areas:
       'sort-method terps'
+      'thc-sort-method terps'
       'submit submit';
     gap: 10px;
     margin: 7px;
