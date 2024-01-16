@@ -27,6 +27,8 @@ export type transformStoreFields = {
   maxPrice: number;
   excludedBrands: string;
   includedBrands: string;
+  excludedTerms: string;
+  includedTerms: string;
 };
 
 export const dispensaryStore = writable({
@@ -55,4 +57,6 @@ export const transformStore = writable({
   maxPrice: 0,
   excludedBrands: '',
   includedBrands: '',
+  excludedTerms: '',
+  includedTerms: '',
 } as transformStoreFields);

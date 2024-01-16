@@ -100,6 +100,24 @@
             bind:value={$transformStore.includedBrands}
           />
         </section>
+        <section id="excluded-terms">
+          <label for="excluded-terms-input">Excl. Terms</label>
+          <input
+            type="text"
+            id="excluded-terms-input"
+            placeholder="term1,term2"
+            bind:value={$transformStore.excludedTerms}
+          />
+        </section>
+        <section id="included-terms">
+          <label for="included-terms-input">Incl. Terms</label>
+          <input
+            type="text"
+            id="included-terms-input"
+            placeholder="term1,term2"
+            bind:value={$transformStore.includedTerms}
+          />
+        </section>
         <button type="submit" disabled={loading}> Filter </button>
       </form>
     </div></Accordion
@@ -113,6 +131,7 @@
       'variants subcategory'
       'minPrice maxPrice'
       'excluded-brands included-brands'
+      'excluded-terms included-terms'
       'submit submit';
     gap: 10px;
     margin: 7px;

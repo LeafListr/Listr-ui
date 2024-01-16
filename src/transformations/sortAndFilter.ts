@@ -30,6 +30,8 @@ type filterParams = {
   maxPrice: number;
   excludedBrands: string;
   includedBrands: string;
+  excludedTerms: string;
+  includedTerms: string;
 };
 
 type sortAndFilterParams = {
@@ -64,6 +66,8 @@ export function newSortAndFilterParams(
       maxPrice: tStore.maxPrice,
       excludedBrands: tStore.excludedBrands,
       includedBrands: tStore.includedBrands,
+      excludedTerms: tStore.excludedTerms,
+      includedTerms: tStore.includedTerms,
     },
   };
 }
@@ -109,6 +113,12 @@ export async function sortAndFilter(
   }
   if (params.filter.includedBrands) {
     url = url.concat(`&brands=${params.filter.includedBrands}`);
+  }
+  if (params.filter.includedTerms) {
+    url = url.concat(`&include=${params.filter.includedTerms}`);
+  }
+  if (params.filter.excludedTerms) {
+    url = url.concat(`&exclude=${params.filter.excludedTerms}`);
   }
 
   const response = await axios.get<Product[]>(url);
