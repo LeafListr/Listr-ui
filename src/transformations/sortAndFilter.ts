@@ -1,3 +1,4 @@
+import { URLBuilder } from '../lib/createUrl';
 import type {
   dispensaryStoreFields,
   productStoreFields,
@@ -5,8 +6,6 @@ import type {
 } from '../repository/store';
 import type { Product } from '../repository/types';
 import axios from 'axios';
-
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 type requestParams = {
   dispensary: string;
@@ -75,12 +74,13 @@ export function newSortAndFilterParams(
 export async function sortAndFilter(
   params: sortAndFilterParams,
 ): Promise<Product[]> {
-  let url = `${apiBaseUrl}/api/v1/dispensaries/${params.request.dispensary}/locations/${params.request.location}/products?category=${params.request.category}`;
-  if (params.request.isRecreational) {
-    url = url.concat('&menu_type=recreational');
-  } else {
-    url = url.concat('&menu_type=medical');
-  }
+  let url = new URLBuilder()
+    .withDispensary(params.request.dispensary)
+    .withLocation(params.request.location)
+    .forCategory(params.request.category)
+    .forRecreational(params.request.isRecreational)
+    .productQuery();
+
   if (params.sort.priceSortMethod) {
     url = url.concat(`&price_sort=${params.sort.priceSortMethod}`);
   }

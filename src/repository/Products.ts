@@ -1,7 +1,6 @@
+import { URLBuilder } from '../lib/createUrl';
 import type { Product } from './types';
 import axios from 'axios';
-
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export async function getProductsForCategory(
   dispensary: string,
@@ -9,12 +8,13 @@ export async function getProductsForCategory(
   isRecreational: boolean,
   category: string,
 ): Promise<Product[]> {
-  let url = `${apiBaseUrl}/api/v1/dispensaries/${dispensary}/locations/${location}/products?category=${category}`;
-  if (isRecreational) {
-    url += `&menu_type=recreational`;
-  } else {
-    url += `&menu_type=medical`;
-  }
+  let url = new URLBuilder()
+    .withDispensary(dispensary)
+    .withLocation(location)
+    .forCategory(category)
+    .forRecreational(isRecreational)
+    .productQuery();
+
   const response = await axios.get<Product[]>(url);
   return response.data;
 }
